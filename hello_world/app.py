@@ -33,15 +33,37 @@ def lambda_handler(event, context):
 
     #     raise e
 
+    def getPathParameters(event) -> str:
+        if "pathParameters" in event and "proxy" in event["pathParameters"]:
+            return str(str(event['pathParameters']['proxy']).split("/"))
+        return "None"
+
+    html = f"""
+        <html>
+            <head>
+                <title>Hello World</title>
+            </head>
+        <body>
+            <h1>Hello World</h1>
+            <p>Path Parameters: {getPathParameters(event)}</p>
+        </body>
+        </html>
+        """
+
 
     return {
         "statusCode": 200,
-        "body": json.dumps(
-            {
-                "message": "hello world",
-                "path" : event["path"],
-                "event": event
-                # "location": ip.text.replace("\n", "")
-            }
-        ),
+        "body": html
     }
+
+    # return {
+    #     "statusCode": 200,
+    #     "body": json.dumps(
+    #         {
+    #             "message": "hello world",
+    #             "path" : event["path"],
+    #             "event": event
+    #             # "location": ip.text.replace("\n", "")
+    #         }
+    #     ),
+    # }
