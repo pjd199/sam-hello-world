@@ -34,7 +34,8 @@ def lambda_handler(event, context):
     #     raise e
 
     def getPathParameters(event):
-        if (("pathParameters" in event) 
+        if (("pathParameters" in event)
+                and (event["pathParameters"] is not None) 
                 and ("proxy" in event["pathParameters"])):
             return event['pathParameters']['proxy']
         return "None"
