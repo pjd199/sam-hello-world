@@ -46,4 +46,4 @@ Outputs:
     Value: !GetAtt HelloWorldFunctionRole.Arn
   HelloWorldFunctionURL:
     Description: "The HTTP URL endpoint for your function"
-    Value: !GetAtt DemoFunctionUrl.FunctionUrl
+    Value: !GetAtt HelloWorldFunction.FunctionUrl
