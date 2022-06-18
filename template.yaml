@@ -44,4 +44,6 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
-  # HelloWo : !GetAtt HelloWorldFunction.FunctionUrl
+  # HelloWorldFunctionURL:
+  #   Description: "The HTTP URL endpoint for your function"
+  #   Value: !GetAtt HelloWorldFunction.FunctionUrl
