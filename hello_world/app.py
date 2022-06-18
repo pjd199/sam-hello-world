@@ -53,8 +53,10 @@ def lambda_handler(event, context):
 
     return {
         "statusCode": 200,
-        "body": html
+        "body": html,
+        "headers": {"Content-Type": "text/html"}
     }
+    # application/json
 
     # return {
     #     "statusCode": 200,
