@@ -19,6 +19,8 @@ Resources:
       Runtime: python3.9
       Architectures:
         - x86_64
+      FunctionUrlConfig:
+        AuthType: NONE
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -44,6 +46,6 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
-  # HelloWorldFunctionURL:
-  #   Description: "The HTTP URL endpoint for your function"
-  #   Value: !GetAtt HelloWorldFunction.FunctionUrl
+  HelloWorldFunctionURL:
+    Description: "The HTTP URL endpoint for your function"
+    Value: !GetAtt HelloWorldFunctionUrl.FunctionUrl
