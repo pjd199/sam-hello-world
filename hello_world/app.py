@@ -33,20 +33,22 @@ def lambda_handler(event, context):
 
     #     raise e
 
-    def getPathParameters(event) -> str:
-        if "pathParameters" in event and "proxy" in event["pathParameters"]:
-            return str(event['pathParameters']['proxy'])
+    def getPathParameters(event):
+        if (("pathParameters" in event) 
+                and ("proxy" in event["pathParameters"])):
+            return event['pathParameters']['proxy']
         return "None"
 
     html = f"""
         <html>
             <head>
-                <title>Hello World</title>
+                <title>Hello Univserse</title>
             </head>
         <body>
             <h1>Hello World</h1>
             <p>Path Parameters: {getPathParameters(event)}</p>
-            <p>{json.dumps(event)}
+            <p>Query String Parameters: {event["queryStringParameters"]}</p>
+            <p>{json.dumps(event)}</p>
         </body>
         </html>
         """
