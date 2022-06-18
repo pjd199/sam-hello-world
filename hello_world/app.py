@@ -37,7 +37,7 @@ def lambda_handler(event, context):
         if (("pathParameters" in event)
                 and (event["pathParameters"] is not None) 
                 and ("proxy" in event["pathParameters"])):
-            return event['pathParameters']['proxy']
+            return event['pathParameters']['proxy'].split("/")
         return "None"
 
     html = f"""
