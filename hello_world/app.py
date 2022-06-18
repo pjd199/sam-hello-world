@@ -33,11 +33,20 @@ def lambda_handler(event, context):
 
     #     raise e
 
-    def getPathParameters(event):
+    def get_path_parameters(event):
         if (("pathParameters" in event)
                 and (event["pathParameters"] is not None) 
                 and ("proxy" in event["pathParameters"])):
             return event['pathParameters']['proxy'].split("/")
+        elif (("rawPath" in event)
+                and (event["rawPath"] is not None)):
+            return event["rawPath"].split("/") 
+        return "None"
+
+    def get_query_string_parameters(event):
+        if (("queryStringParameters" in event)
+            and (event["queryStringParameters"] is not None)):
+            return event["queryStringParameters"]
         return "None"
 
     html = f"""
@@ -47,8 +56,8 @@ def lambda_handler(event, context):
             </head>
         <body>
             <h1>Hello World</h1>
-            <p>Path Parameters: {getPathParameters(event)}</p>
-            <p>Query String Parameters: {event["queryStringParameters"]}</p>
+            <p>Path Parameters: {get_path_parameters(event)}</p>
+            <p>Query String Parameters: {get_query_string_parameters(event)}</p>
             <p>{json.dumps(event)}</p>
         </body>
         </html>
