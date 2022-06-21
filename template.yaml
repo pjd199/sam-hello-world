@@ -8,7 +8,7 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 60
+    Timeout: 900
 
 Resources:
   HelloWorldFunction:
@@ -27,13 +27,11 @@ Resources:
           Properties:
             Path: /hello
             Method: get
-            PayloadFormatVersion: "2.0"
         HelloWorldGreedy:
           Type: Api
           Properties:
             Path: /hello/{proxy+}
             Method: get
-            PayloadFormatVersion: "2.0"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
