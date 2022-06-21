@@ -27,11 +27,13 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+            PayloadFormatVersion: "2.0"
         HelloWorldGreedy:
           Type: Api
           Properties:
             Path: /hello/{proxy+}
             Method: get
+            PayloadFormatVersion: "2.0"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

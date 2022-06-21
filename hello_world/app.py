@@ -11,18 +11,22 @@ def lambda_handler(event, context):
     event: dict, required
         API Gateway Lambda Proxy Input Format
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+        Event doc: https://docs.aws.amazon.com/apigateway/latest/
+                    developerguide/set-up-lambda-proxy-integrations.html
+                    #api-gateway-simple-proxy-for-lambda-input-format
 
     context: object, required
         Lambda Context runtime methods and attributes
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
+        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/
+                        python-context-object.html
 
     Returns
     ------
     API Gateway Lambda Proxy Output Format: dict
 
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
+        Return doc: https://docs.aws.amazon.com/apigateway/latest/
+                    developerguide/set-up-lambda-proxy-integrations.html
     """
 
     # try:
@@ -34,18 +38,18 @@ def lambda_handler(event, context):
     #     raise e
 
     def get_path_parameters(event):
-        if (("pathParameters" in event)
-                and (event["pathParameters"] is not None) 
-                and ("proxy" in event["pathParameters"])):
-            return event['pathParameters']['proxy'].split("/")
+        if (("path" in event)
+                and (event["path"] is not None)):
+            return filter(None, event['path'].split("/"))
         elif (("rawPath" in event)
                 and (event["rawPath"] is not None)):
-            return event["rawPath"].split("/") 
+            return filter(None, event["rawPath"].split("/"))
+
         return "None"
 
     def get_query_string_parameters(event):
         if (("queryStringParameters" in event)
-            and (event["queryStringParameters"] is not None)):
+                and (event["queryStringParameters"] is not None)):
             return event["queryStringParameters"]
         return "None"
 
@@ -57,13 +61,12 @@ def lambda_handler(event, context):
         <body>
             <h1>Hello World</h1>
             <p>Path Parameters: {get_path_parameters(event)}</p>
-            <p>Query String Parameters: {get_query_string_parameters(event)}</p>
+            <p>Query String Parameters:
+                {get_query_string_parameters(event)}</p>
             <p>{json.dumps(event)}</p>
         </body>
         </html>
         """
-
-
     return {
         "statusCode": 200,
         "body": html,
